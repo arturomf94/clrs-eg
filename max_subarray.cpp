@@ -54,6 +54,14 @@ void printArray(int A[], int size)
         printf("%d ", A[i]);
     printf("\n");
 }
+
+void printSubarray(int A[], int low, int high)
+{
+    int i;
+    for (i=low; i <= high; i++)
+        printf("%d ", A[i]);
+    printf("\n");
+}
  
 int main()
 {
@@ -69,17 +77,10 @@ int main()
     printArray(arr, arr_size);
     printf("\n");
 
-    printf("The left-index is");
-    printf("%d", max_crossing_subarray.max_left);
+    printf("The  max crossing subarray is ");
+    printSubarray(arr, max_crossing_subarray.max_left, max_crossing_subarray.max_right);
     printf("\n");
 
-    printf("The right-index is");
-    printf("%d", max_crossing_subarray.max_right);
-    printf("\n");
-
-    printf("And the total sum is");
-    printf("%d", max_crossing_subarray.total_sum);
-    printf("\n");
  
     return 0;
 }
