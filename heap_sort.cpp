@@ -14,7 +14,7 @@ void maxHeapify(int arr[], int i, int n)
 	int aux = INT_MIN;
 
 	if(l < n and arr[l] > arr[i])
-	{
+	{		
 		largest = l;
 	}
 	else
@@ -42,6 +42,20 @@ void buildMaxHeap(int arr[], int n)
 }
 
 
+void heapSort(int arr[], int n)
+{
+	int aux = INT_MIN;
+	int j = INT_MIN;
+
+	buildMaxHeap(arr, n);
+	for (j = n - 1; j > 0; j--)
+	{
+		aux = arr[0];
+		arr[0] = arr[j];
+		arr[j] = aux;
+		maxHeapify(arr, 0, j);
+	}
+}
 
 /* Print array */
 void printArray(int arr[], int n)
@@ -52,15 +66,13 @@ void printArray(int arr[], int n)
    printf("\n");
 }
 
-
 /* Driver program to test heap sort */
 int main()
 {
-    int arr[] = {2, 7, 1, 6, 14};
+    int arr[] = {6, 1, 7, 2, 14, 0};
     int n = sizeof(arr)/sizeof(arr[0]);
-    /*heapSort(arr);*/
 
-    buildMaxHeap(arr, n);
+    heapSort(arr, n);
     printArray(arr, n);
  
     return 0;
