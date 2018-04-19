@@ -6,16 +6,14 @@
 #include <math.h>
 #include <limits.h>
 
-void maxHeapify(int arr[], int i)
+void maxHeapify(int arr[], int i, int n)
 {
-	int l = 2 * i;
-	int r = 2 * i + 1;
+	int l = 2 * i + 1;
+	int r = 2 * i + 2;
 	int largest = INT_MIN;
 	int aux = INT_MIN;
 
-	int heap_size = sizeof(arr)/sizeof(arr[0]);
-
-	if(l <= heap_size and arr[l] > arr[i])
+	if(l < n and arr[l] > arr[i])
 	{
 		largest = l;
 	}
@@ -23,23 +21,24 @@ void maxHeapify(int arr[], int i)
 	{
 		largest = i;
 	}
+	if(r < n and arr[r] > arr[largest])
+	{
+		largest = r;
+	}
 	if(largest != i)
 	{
-		aux = arr[i]
-		arr[i] = arr[largest]
-		arr[largest] = aux
-		maxHeapify(arr, largest)
+		aux = arr[i];
+		arr[i] = arr[largest];
+		arr[largest] = aux;
+		maxHeapify(arr, largest, n);
 	}
 }
 
-void buildMaxHeap(int arr[])
+void buildMaxHeap(int arr[], int n)
 {
 	int i = 0;
-	int heap_size = sizeof(arr)/sizeof(arr[0]);
-	for(i = floor(heap_size / 2), i >= 1, i--)
-	{
-		maxHeapify(arr, i)
-	}
+	for(i = floor(n / 2); i >= 0; i--)
+		maxHeapify(arr, i, n);
 }
 
 
@@ -57,12 +56,11 @@ void printArray(int arr[], int n)
 /* Driver program to test heap sort */
 int main()
 {
-    int arr[] = {12, 11, 13, 5, 6};
+    int arr[] = {2, 7, 1, 6, 14};
     int n = sizeof(arr)/sizeof(arr[0]);
-
     /*heapSort(arr);*/
 
-    buildMaxHeap(arr)
+    buildMaxHeap(arr, n);
     printArray(arr, n);
  
     return 0;
